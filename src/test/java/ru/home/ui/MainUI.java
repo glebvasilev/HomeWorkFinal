@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
@@ -31,10 +32,10 @@ public class MainUI {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("browserName", "chrome");
         capabilities.setCapability("browserVersion", "89.0");
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
-                "enableVideo", true
-        ));
+        capabilities.setCapability("selenoid:options", new HashMap<String, Object>() {{
+            put("enableVNC",true);
+            put("enableVideo", true);
+        }});
         Configuration.browserCapabilities = capabilities;
         Configuration.browser = "chrome";
         Configuration.timeout = 10000;
